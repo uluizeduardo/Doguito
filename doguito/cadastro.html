@@ -24,18 +24,18 @@
                 <fieldset>
                     <legend class="formulario__legenda">Informações básicas</legend>
                     <div class="input-container">
-                        <input name="nome" id="nome" class="input" type="text" placeholder="Nome" required>
+                        <input name="nome" id="nome" class="input" type="text" placeholder="Nome" data-tipo="nome" required>
                         <label class="input-label" for="nome">Nome</label>
                         <span class="input-mensagem-erro">Este campo não está válido</span>
                     </div>
                     <div class="input-container">
-                        <input name="email" id="email" class="input" type="email" placeholder="Email" 
+                        <input name="email" id="email" class="input" type="email" placeholder="Email" data-tipo="email"
                         pattern="[^@\s]+@[^@\s]+\.[^@\s]+" title="Endereço de email inválido" required>
                         <label class="input-label" for="email">Email</label>
                         <span class="input-mensagem-erro">Este campo não está válido</span>
                     </div>
                     <div class="input-container">
-                        <input name="senha" id="senha" class="input" type="password" placeholder="Senha" 
+                        <input name="senha" id="senha" class="input" type="password" placeholder="Senha" data-tipo="senha" 
                         pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[()\[\]{}?!$%&/=*+~,.;:<>_-]).{9,}" 
                         title="A senha deve conter ao menos um número, letras maiúsculas, minúnsculas, símbolos e no mínimo 9 caracteres" required>
                         <label class="input-label" for="senha">Senha</label>
