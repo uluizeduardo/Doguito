@@ -23,14 +23,14 @@ const tiposDeErro = [
 
 const mensagemDeErro = {
     nome: {
-        valueMissing: "O campo nome não pode está vazio"
+        valueMissing: "O campo nome não pode estar vazio"
     },
     email: {
-        valueMissing: "O campo email não pode está vazio",
+        valueMissing: "O campo email não pode estar vazio",
         typeMismatch: "Este email não é válido"
     },
     senha: {
-        valueMissing: "O campo senha não pode está vazio",
+        valueMissing: "O campo senha não pode estar vazio",
         patternMismatch: "A senha deve conter ao menos um número, letras maiúsculas, minúnsculas, símbolos e no mínimo 9 caracteres"
     },
     dataNascimento: {
@@ -38,8 +38,12 @@ const mensagemDeErro = {
         customError: "Você precisa ser maior que 18 anos para se cadastrar."
     },
     cpf: {
-        valueMissing: 'O campo cpf não pode está vazio.',
+        valueMissing: 'O campo cpf não pode estar vazio.',
         customError: 'O CPF digitado não é válido.'
+    },
+    cep: {
+        valueMissing: 'O campo CEP não pode estar vazio.',
+        patternMismatch: 'O CEP digitado não é válido.'
     }
 }
 const validadores = {
