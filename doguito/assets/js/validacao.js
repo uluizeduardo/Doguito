@@ -43,12 +43,23 @@ const mensagemDeErro = {
     },
     cep: {
         valueMissing: 'O campo CEP não pode estar vazio.',
-        patternMismatch: 'O CEP digitado não é válido.'
+        patternMismatch: 'O CEP digitado não é válido.',
+        customError: 'Não foi possível buscar CEP.'
+    },
+    logradouro: {
+        valueMissing: 'O campo Logradouro não pode estar vazio.',
+    },
+    cidade: {
+        valueMissing: 'O campo Cidade não pode estar vazio.',
+    },
+    estado: {
+        valueMissing: 'O campo Estado não pode estar vazio.',
     }
 }
 const validadores = {
     dataNascimento:input => validaDataNascimento(input),
-    cpf:input => validaCPF(input)
+    cpf:input => validaCPF(input),
+    cep:input => recuperarCep(input)
 }
 
 
@@ -144,4 +155,42 @@ function checaDigitoVerificador(cpf, multiplicador){
 
 function confirmaDigito(soma){
     return 11 - (soma % 11);
+}
+
+function recuperarCep(input) {
+    const cep = input.value.replace(/\D/g, '');
+    const url = `https://viacep.com.br/ws/${cep}/json/`;
+    const options = {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+            'content-type': 'application/json;charset=utf-8'
+        }
+    }
+
+    if(!input.validity.patternMismatch && !input.validity.valueMissing){
+        fetch(url).then(
+            response => response.json()
+        ).then(
+            data => {
+                if(data.erro){
+                    input.setCustomValidity('Não foi possível buscar CEP.');
+                    return;
+                }
+                input.setCustomValidity('');
+                preencheCampos(data);
+                return;
+            }
+        )
+    }
+}
+
+function preencheCampos(data){
+    const logradouro = document.querySelector('[data-tipo="logradouro"]');
+    const cidade = document.querySelector('[data-tipo="cidade"]');
+    const estado = document.querySelector('[data-tipo="estado"]');
+
+    logradouro.value = data.logradouro;
+    cidade.value = data.localidade;
+    estado.value = data.uf;
 }
